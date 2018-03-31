@@ -1,0 +1,18 @@
+{
+  "name": "agrichain-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Olakunle Dosunmu",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^16.6.2",
+    "hapi-cors-headers": "^1.0.0",
+    "bcrypt": "1.0.2",
+    "mongodb": "^2.2.31",
+    "jsonwebtoken": "^8.1.1"
+  }
+}
