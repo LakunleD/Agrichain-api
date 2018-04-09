@@ -6,11 +6,12 @@ const bcrypt = require('bcrypt');
 const userRoutes = function (server, db) {
     let usersCollection = db.collection('users');
 
-
     server.route({
         method: "GET",
         path:"/defaultUsers",
         handler: function (request, reply) {
+            usersCollection.remove({}, (err, numberRemoved)=>{});
+
             let salt = bcrypt.genSaltSync(11);
             let password = bcrypt.hashSync('123456', salt);
 
