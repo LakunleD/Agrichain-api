@@ -11,9 +11,12 @@ const userRoutes = function (server, db) {
         method: "GET",
         path:"/defaultUsers",
         handler: function (request, reply) {
+            let salt = bcrypt.genSaltSync(11);
+            let password = bcrypt.hashSync('123456', salt);
+
             let data1 = {
                 email: 'as@gmail.com',
-                password: '123456',
+                password: password,
                 firstName: 'as',
                 lastName: 'las',
                 permission:{
@@ -24,8 +27,8 @@ const userRoutes = function (server, db) {
             }
 
             let data2 = {
-                email: 'qw@gmail.com    ',
-                password: '123456',
+                email: 'qw@gmail.com',
+                password: password,
                 firstName: 'qw',
                 lastName: 'qw',
                 permission:{
@@ -37,7 +40,7 @@ const userRoutes = function (server, db) {
 
             let data3 = {
                 email: 'zx@gmail.com',
-                password: '123456',
+                password: password,
                 firstName: 'Qwe',
                 lastName: 'Asd',
                 permission:{
@@ -74,7 +77,7 @@ const userRoutes = function (server, db) {
                                                 if (err) {
                                                     reply({message: 'error'}).code(400);
                                                 }
-                                                reply({message: 'created default users', user1: data1, user2:data2, user3: data3});
+                                                reply({message: 'created default users', password:'123456', user1: data1, user2:data2, user3: data3});
                                             });
                                         }
                                         else {

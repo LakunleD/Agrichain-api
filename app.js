@@ -13,9 +13,8 @@ const mongoUser = process.env.TAJA_MONGODB_USER;
 const mongoPasswd = process.env.TAJA_MONGODB_PWD;
 
 
-
 // let mongoDbConnectionString = "mongodb://" + mongoUser + ":" + mongoPasswd + "@" + mongodbLocation + ":27017/" + mongodbDatabase;
-let mongoDbConnectionString = "mongodb://localhost:27017/agrichain";
+let mongoDbConnectionString ="mongodb://localhost:27017/agrichain";
 
 
 MongoClient.connect(mongoDbConnectionString, function (err, db) {
