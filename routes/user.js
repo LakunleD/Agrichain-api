@@ -10,8 +10,6 @@ const userRoutes = function (server, db) {
         method: "GET",
         path:"/defaultUsers",
         handler: function (request, reply) {
-            usersCollection.remove({}, (err, numberRemoved)=>{});
-
             let salt = bcrypt.genSaltSync(11);
             let password = bcrypt.hashSync('123456', salt);
 
