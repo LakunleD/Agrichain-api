@@ -7,14 +7,14 @@ const MongoClient = require('mongodb').MongoClient;
 let userRoutes = require('./routes/user');
 let authRoutes = require('./routes/auth');
 
-const mongodbLocation = process.env.MONGODB_LOCATION;
-const mongodbDatabase = process.env.MONGODB_DATABASE;
-const mongoUser = process.env.TAJA_MONGODB_USER;
-const mongoPasswd = process.env.TAJA_MONGODB_PWD;
+// const mongodbLocation = process.env.MONGODB_LOCATION;
+// const mongodbDatabase = process.env.MONGODB_DATABASE;
+// const mongoUser = process.env.TAJA_MONGODB_USER;
+// const mongoPasswd = process.env.TAJA_MONGODB_PWD;
 
 
 // let mongoDbConnectionString = "mongodb://" + mongoUser + ":" + mongoPasswd + "@" + mongodbLocation + ":27017/" + mongodbDatabase;
-let mongoDbConnectionString ="mongodb://localhost:27017/agrichain";
+let mongoDbConnectionString = process.env.MONGODB_URI;
 
 
 MongoClient.connect(mongoDbConnectionString, function (err, db) {
@@ -29,7 +29,7 @@ MongoClient.connect(mongoDbConnectionString, function (err, db) {
 
 
 server.connection({
-    "port": 8020,
+    "port": process.env.PORT,
     "routes": {
         "cors": {
             "headers": ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language", "Origin"],
