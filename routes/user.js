@@ -60,60 +60,43 @@ const userRoutes = function (server, db) {
                         if (err) {
                             reply({message: 'error'}).code(400);
                         }
-                        reply({message: 'created default users', password:'123456', user1: data1, user2:data2, user3: data3});
+                        usersCollection.findOne({email: data2.email}, function (err, user) {
+                            if (err) {
+                                reply({message: 'error'}).code(400);
+                            }
+                            if (user === null) {
+                                usersCollection.insertOne(data2, function (err, result) {
+                                    if (err) {
+                                        reply({message: 'error'}).code(400);
+                                    }
+                                    usersCollection.findOne({email: data3.email}, function (err, user) {
+                                        if (err) {
+                                            reply({message: 'error'}).code(400);
+                                        }
+                                        if (user === null) {
+                                            usersCollection.insertOne(data3, function (err, result) {
+                                                if (err) {
+                                                    reply({message: 'error'}).code(400);
+                                                }
+                                                reply({message: 'created default users', password:'123456', user1: data1, user2:data2, user3: data3});
+                                            });
+                                        }
+                                        else {
+                                            reply({message: 'user already exist'});
+                                        }
+                                    });
+                                });
+                            }
+                            else {
+                                reply({message: 'user already exist'});
+                            }
+                        });
                     });
                 }
                 else {
                     reply({message: 'user already exist'});
                 }
             });
-
-            // usersCollection.findOne({email: data1.email}, function (err, user) {
-            //     if (err) {
-            //         reply({message: 'error'}).code(400);
-            //     }
-            //     if (user === null) {
-            //         usersCollection.insertOne(data1, function (err, result) {
-            //             if (err) {
-            //                 reply({message: 'error'}).code(400);
-            //             }
-            //             usersCollection.findOne({email: data2.email}, function (err, user) {
-            //                 if (err) {
-            //                     reply({message: 'error'}).code(400);
-            //                 }
-            //                 if (user === null) {
-            //                     usersCollection.insertOne(data2, function (err, result) {
-            //                         if (err) {
-            //                             reply({message: 'error'}).code(400);
-            //                         }
-            //                         usersCollection.findOne({email: data3.email}, function (err, user) {
-            //                             if (err) {
-            //                                 reply({message: 'error'}).code(400);
-            //                             }
-            //                             if (user === null) {
-            //                                 usersCollection.insertOne(data3, function (err, result) {
-            //                                     if (err) {
-            //                                         reply({message: 'error'}).code(400);
-            //                                     }
-            //                                     reply({message: 'created default users', password:'123456', user1: data1, user2:data2, user3: data3});
-            //                                 });
-            //                             }
-            //                             else {
-            //                                 reply({message: 'user already exist'});
-            //                             }
-            //                         });
-            //                     });
-            //                 }
-            //                 else {
-            //                     reply({message: 'user already exist'});
-            //                 }
-            //             });
-            //         });
-            //     }
-            //     else {
-            //         reply({message: 'user already exist'});
-            //     }
-            // });
 
         }
     })

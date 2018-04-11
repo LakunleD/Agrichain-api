@@ -39,10 +39,6 @@ function addAuthRoutes(server, db) {
                     doc._id = undefined;
                     doc.password= undefined;
                     tokenManagement.createToken(doc, (success, token) => {
-                        console.log(success);
-                        console.log('success')
-                        console.log(token);
-                        console.log('token');
                         if (success) {
                             console.log('ssssssssssss');
                             let response = {
