@@ -14,7 +14,7 @@ let authRoutes = require('./routes/auth');
 
 
 // let mongoDbConnectionString = "mongodb://" + mongoUser + ":" + mongoPasswd + "@" + mongodbLocation + ":27017/" + mongodbDatabase;
-let mongoDbConnectionString = process.env.MONGODB_URI;
+let mongoDbConnectionString = 'mongodb://localhost:27017/agrichain';
 
 
 MongoClient.connect(mongoDbConnectionString, function (err, db) {
@@ -29,7 +29,7 @@ MongoClient.connect(mongoDbConnectionString, function (err, db) {
 
 
 server.connection({
-    "port": process.env.PORT,
+    "port": 8020,
     "routes": {
         "cors": {
             "headers": ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language", "Origin"],
