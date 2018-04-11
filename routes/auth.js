@@ -34,16 +34,17 @@ function addAuthRoutes(server, db) {
 
 
             doAuth(db, email, password, (status, response) => {
-                console.log(status);
-                console.log('statussss');
                 if (status) {
                     let doc = response;
                     doc._id = undefined;
                     doc.password= undefined;
                     tokenManagement.createToken(doc, (success, token) => {
-                        console.log(doc);
-                        console.log('doc');
+                        console.log(success);
+                        console.log('success')
+                        console.log(token);
+                        console.log('token');
                         if (success) {
+                            console.log('ssssssssssss');
                             let response = {
                                 "message":"Login Successful",
                                 "token": token,
@@ -52,6 +53,7 @@ function addAuthRoutes(server, db) {
                             reply(response);
                         }
                         else {
+                            console.log('faaaaaaaaaaaaaaa');
                             let response = {
                                 "message":"Login Failed",
                                 "token": null
