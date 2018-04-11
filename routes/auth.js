@@ -5,7 +5,7 @@ const tokenManagement = require('./token_mgmt');
 
 
 function doAuth(db, email, password, callback) {
-    console.log("Authenticating...")
+    console.log("Authenticating...");
     let usersCollection = db.collection("users");
     usersCollection.findOne({"email": email}, (e, doc) => {
         if (doc !== null) {
@@ -34,11 +34,15 @@ function addAuthRoutes(server, db) {
 
 
             doAuth(db, email, password, (status, response) => {
+                console.log(status);
+                console.log('statussss');
                 if (status) {
                     let doc = response;
                     doc._id = undefined;
                     doc.password= undefined;
                     tokenManagement.createToken(doc, (success, token) => {
+                        console.log(doc);
+                        console.log('doc');
                         if (success) {
                             let response = {
                                 "message":"Login Successful",
