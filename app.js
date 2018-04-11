@@ -29,7 +29,7 @@ MongoClient.connect(mongoDbConnectionString, function (err, db) {
 
 
 server.connection({
-    "port": 8020,
+    "port": 4000,
     "routes": {
         "cors": {
             "headers": ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language", "Origin"],
