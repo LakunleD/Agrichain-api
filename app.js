@@ -6,6 +6,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 let userRoutes = require('./routes/user');
 let authRoutes = require('./routes/auth');
+let companiesRoutes = require('./routes/companies');
 
 // const mongodbLocation = process.env.MONGODB_LOCATION;
 // const mongodbDatabase = process.env.MONGODB_DATABASE;
@@ -43,6 +44,7 @@ server.ext('onPreResponse', corsHeaders)
 function addRoutes(server, db) {
     userRoutes(server, db);
     authRoutes(server, db);
+    companiesRoutes(server, db);
 }
 
 function startServer(server) {
